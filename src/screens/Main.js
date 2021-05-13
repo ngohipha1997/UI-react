@@ -9,9 +9,21 @@ import {
 } from 'react-native';
 
 export default class Main extends Component {
+  constructor(props){
+    super(props);
+    this.state= {
+      words : [
+        {id: 1, en: 'One', vn: 'Một', isMemorized: false},
+        {id: 2, en: 'Two', vn: 'Hai', isMemorized: false},
+        {id: 3, en: 'Three', vn: 'Ba', isMemorized: true},
+        {id: 4, en: 'Four', vn: 'Bốn', isMemorized: true},
+        {id: 5, en: 'Five', vn: 'Năm', isMemorized: false},
+      ],
+    }
+  }
   renderWord = (word) => {
     return (
-      <View style={styles.containerWord}>
+      <View style={styles.containerWord} key = {word.id}>
         <View style={styles.containerText}>
           <Text style={styles.textStyleEn}>{word.en}</Text>
           <Text style={styles.textStyleVn}>
@@ -35,17 +47,13 @@ export default class Main extends Component {
       </View>
     );
   };
-  render() {
-    const words = [
-      {id: 1, en: 'One', vn: 'Một', isMemorized: false},
-      {id: 2, en: 'Two', vn: 'Hai', isMemorized: false},
-      {id: 3, en: 'Three', vn: 'Ba', isMemorized: true},
-      {id: 4, en: 'Four', vn: 'Bốn', isMemorized: true},
-      {id: 5, en: 'Five', vn: 'Năm', isMemorized: false},
-    ];
+  render() { 
     return (
       <SafeAreaView style={styles.container}>
-        {words.map((word) => this.renderWord(word))}
+        {this.state.words.map((word) => {
+          return this.renderWord(word);
+        })}
+        
       </SafeAreaView>
     );
   }
