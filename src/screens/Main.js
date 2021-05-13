@@ -6,6 +6,7 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
+  InteractionManager,
 } from 'react-native';
 
 export default class Main extends Component {
@@ -32,6 +33,22 @@ export default class Main extends Component {
         </View>
         <View style={styles.containerTouchable}>
           <TouchableOpacity
+          onPress= {() => {
+            const newWords = this .state.words.map((item) => {
+              if (item.id == word.id){
+                return {... item , isMemorized : !item.isMemorized};
+              }
+              return item;
+            });
+            this.setState({words : newWords});
+       
+            
+            // tao ra 1 mang moi de cap nhap cho cai words
+            // tao ra mang moi , doi voi vi tri id nguoi dung 
+            // gan ismemorized phu dinh lai
+
+          }}
+        
             style={{
               ...styles.touchForgot,
               backgroundColor: word.isMemorized ? 'green' : 'red',
@@ -40,7 +57,17 @@ export default class Main extends Component {
               {word.isMemorized ? 'Forgot' : 'Memorized'}
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.touchRemove}>
+          <TouchableOpacity 
+          onPress ={() => {
+            const newWords = this.state.words.filter ((item) => {
+              if(item.id == word.id ){
+                return false ;
+              }
+              return true;
+            });
+            this.setState({words : newWords});
+          }}
+          style={styles.touchRemove}>
             <Text style={styles.textTouchRemove}>Remove</Text>
           </TouchableOpacity>
         </View>
