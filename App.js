@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { SafeAreaView, Text, View } from 'react-native';
 import Box from './src/components/Box';
+import Filter from './src/components/Filter';
 import From from './src/components/From';
 import Main from './src/screens/Main';
 
@@ -11,6 +12,7 @@ export default class App extends Component {
         <Main />
         {/* <Box/> */}
         {/* <From /> */}
+        {/* <Filter/> */}
       </SafeAreaView>
     );
   }
